@@ -402,11 +402,17 @@ body.page-signup {
   display: flex;
   align-items: stretch;
   gap: 2rem;
+  text-decoration: none;
+    align-items: center;
 }
 
 .logo-wrapper img {
   /* margin: 1.5rem; */
   margin-left: 0;
+}
+.logo{
+    text-decoration: none;
+    font-size: 28px;
 }
 
 .navbar-nav {
