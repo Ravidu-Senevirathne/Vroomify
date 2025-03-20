@@ -28,7 +28,7 @@
     <!-- <link rel="stylesheet" href="css/output.css" /> -->
 </head>
 
-<body>
+<body @isset($cssClass) class=" {{$cssClass}}" @endisset>
 
 
     @yield('childContent')
