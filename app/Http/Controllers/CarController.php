@@ -11,13 +11,13 @@ class CarController extends Controller
 
     public function index()
     {
-
+        return view('car.index');
     }
 
 
     public function create()
     {
-
+        return view('car.create');
     }
 
 
@@ -28,12 +28,12 @@ class CarController extends Controller
 
     public function show(string $id)
     {
-        //
+        return view('car.show');
     }
 
     public function edit(string $id)
     {
-        //
+        return view('car.edit');
     }
 
 
@@ -46,5 +46,8 @@ class CarController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+    public function search(Request $request){
+        return view('car.search');
     }
 }
