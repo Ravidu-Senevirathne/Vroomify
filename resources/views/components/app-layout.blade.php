@@ -1,4 +1,4 @@
-<x-clean-layout :title="$title ?? ''" :cssClass="$cssClass ?? ''">
+<x-clean-layout :title="$title ?? 'Vroomify'" :cssClass="$cssClass ?? ''">
     <x-header />
     <main>
         {{ $slot }}
