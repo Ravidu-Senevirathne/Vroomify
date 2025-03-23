@@ -2,9 +2,12 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\EloquentModel;
 
-class Model extends Model
+class Model extends EloquentModel
 {
-    //
+    protected $fillable = [
+        'name',
+        'maker_id',
+    ];
 }
