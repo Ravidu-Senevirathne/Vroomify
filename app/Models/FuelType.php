@@ -7,6 +7,10 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class FuelType extends Model
 {
+    protected $table = 'fuel_type';
+
+    public $timestamps = false;
+
     protected $fillable = [
         'name',
     ];

@@ -8,12 +8,14 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class CarImage extends Model
 {
-    protected $fillable =[
+    public $timestamps = false;
+
+    protected $fillable = [
         'image_path',
         'position'
-];
+    ];
 
-    public function car():BelongsTo
+    public function car(): BelongsTo
     {
         return $this->belongsTo(Car::class);
     }

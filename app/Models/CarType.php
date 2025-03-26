@@ -8,6 +8,9 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class CarType extends Model
 {
+    public $timestamps = false;
+    protected $table = 'car_type';
+
     protected $fillable = [
         'name',
     ];
@@ -15,5 +18,4 @@ class CarType extends Model
     {
         return $this->hasMany(Car::class);
     }
-
 }

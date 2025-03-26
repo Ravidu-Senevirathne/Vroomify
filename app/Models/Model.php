@@ -8,16 +8,18 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Model extends EloquentModel
 {
+    public $timestamps = false;
+
     protected $fillable = [
         'name',
         'maker_id',
     ];
- public function maker(): BelongsTo
- {
-     return $this->belongsTo(Maker::class);
- }
-  public function cars(): HasMany
-  {
-      return $this->hasMany(Car::class);
-  }
+    public function maker(): BelongsTo
+    {
+        return $this->belongsTo(Maker::class);
+    }
+    public function cars(): HasMany
+    {
+        return $this->hasMany(Car::class);
+    }
 }
