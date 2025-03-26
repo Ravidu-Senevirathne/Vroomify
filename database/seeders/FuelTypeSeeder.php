@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use App\Models\FuelType;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -17,11 +16,7 @@ class FuelTypeSeeder extends Seeder
             'Gasoline',
             'Diesel',
             'Electric',
-            'Hybrid',
-            'Plug-in Hybrid',
-            'Hydrogen',
-            'Natural Gas',
-            'Flex-Fuel'
+            'Hybrid'
         ];
 
         foreach ($fuelTypes as $type) {

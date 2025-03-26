@@ -51,7 +51,7 @@ class Car extends Model
 
     public function owner(): BelongsTo
     {
-        return $this->belongsTo(User::class,`user_id`);
+        return $this->belongsTo(User::class, 'user_id');
     }
 
     public function city(): BelongsTo
@@ -59,9 +59,21 @@ class Car extends Model
         return $this->belongsTo(City::class);
     }
 
-    public function features():HasOne
+    public function features(): HasOne
     {
         return $this->hasOne(CarFeatures::class);
+    }
+
+    /**
+     * Set car features by creating or updating related feature record
+     */
+    public function setFeatures(array $features): void
+    {
+        if ($this->features) {
+            $this->features->update($features);
+        } else {
+            $this->features()->create($features);
+        }
     }
 
     public function primaryImage(): HasOne

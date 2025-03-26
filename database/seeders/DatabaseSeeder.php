@@ -28,16 +28,17 @@ class DatabaseSeeder extends Seeder
             User::factory(6 - $userCount)->create();
         }
 
-        // Call other seeders
+        // Call other seeders in proper order to respect foreign key constraints
         $this->call([
-            MakerSeeder::class,
-            ModelSeeder::class,
+            StateSeeder::class,      // State first as City depends on it
+            CitySeeder::class,       // City needs State
+            MakerSeeder::class,      // Maker first as Model depends on it
+            ModelSeeder::class,      // Model needs Maker
             CarTypeSeeder::class,
             FuelTypeSeeder::class,
-            StateSeeder::class, 
-            CitySeeder::class,
-            CarSeeder::class,
-            CarImageSeeder::class,
+            CarSeeder::class,        // Car needs all the above
+            CarImageSeeder::class,   // Images need Cars
+            CarFeaturesSeeder::class, // Features need Cars
         ]);
     }
 }

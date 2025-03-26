@@ -3,8 +3,8 @@
 namespace Database\Seeders;
 
 use App\Models\Car;
-use App\Models\CarImage;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class CarImageSeeder extends Seeder
 {
@@ -13,35 +13,27 @@ class CarImageSeeder extends Seeder
      */
     public function run(): void
     {
-        $cars = Car::all();
-        $placeholderImages = [
-            '/img/car-placeholder-1.jpg',
-            '/img/car-placeholder-2.jpg',
-            '/img/car-placeholder-3.jpg',
-            '/img/car-placeholder-4.jpg',
-            '/img/car-placeholder-5.jpg',
+        // Sample image paths to use for seeding
+        $imagePaths = [
+            '/img/cars/Lexus-RX200t-2016/1.jpeg',
+            '/img/cars/Lexus-RX200t-2016/2.jpeg',
+            '/img/cars/Lexus-RX200t-2016/3.jpeg',
+            '/img/cars/Lexus-RX200t-2016/4.jpeg',
+            '/img/car-png-39071.png',
         ];
 
-        // If you don't have placeholder images yet, use these URLs
-        if (!file_exists(public_path('/img/car-placeholder-1.jpg'))) {
-            $placeholderImages = [
-                'https://via.placeholder.com/800x600.png?text=Car+Image+1',
-                'https://via.placeholder.com/800x600.png?text=Car+Image+2',
-                'https://via.placeholder.com/800x600.png?text=Car+Image+3',
-                'https://via.placeholder.com/800x600.png?text=Car+Image+4',
-                'https://via.placeholder.com/800x600.png?text=Car+Image+5',
-            ];
-        }
+        // Get all cars
+        $cars = Car::all();
 
+        // Add 2-5 random images to each car
         foreach ($cars as $car) {
-            // Create between 1 and 5 images for each car
-            $imageCount = rand(1, 5);
+            $numImages = rand(2, 5);
 
-            for ($i = 0; $i < $imageCount; $i++) {
-                CarImage::create([
+            for ($i = 0; $i < $numImages; $i++) {
+                DB::table('car_images')->insert([
                     'car_id' => $car->id,
-                    'image_path' => $placeholderImages[$i % count($placeholderImages)],
-                    'position' => $i + 1,
+                    'image_path' => $imagePaths[array_rand($imagePaths)],
+                    'position' => $i
                 ]);
             }
         }

@@ -33,7 +33,8 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Car::class, 'favorite_cars', 'user_id', 'car_id');
     }
-    public function car(): HasMany
+
+    public function cars(): HasMany
     {
         return $this->hasMany(Car::class);
     }

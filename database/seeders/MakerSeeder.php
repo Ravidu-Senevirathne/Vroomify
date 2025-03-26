@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use App\Models\Maker;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -15,24 +14,23 @@ class MakerSeeder extends Seeder
     {
         $makers = [
             'Toyota',
-            'Honda',
             'Ford',
+            'Honda',
             'Chevrolet',
+            'Nissan',
+            'Lexus',
             'BMW',
             'Mercedes-Benz',
             'Audi',
             'Volkswagen',
-            'Nissan',
             'Hyundai',
             'Kia',
             'Tesla',
             'Mazda',
-            'Lexus',
             'Subaru'
         ];
 
         foreach ($makers as $maker) {
-            // Using DB facade directly to avoid timestamp issues
             DB::table('makers')->insertOrIgnore(['name' => $maker]);
         }
     }

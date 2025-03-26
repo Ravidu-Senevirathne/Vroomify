@@ -2,9 +2,9 @@
 
 namespace Database\Seeders;
 
-use App\Models\City;
 use App\Models\State;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class CitySeeder extends Seeder
 {
@@ -13,44 +13,24 @@ class CitySeeder extends Seeder
      */
     public function run(): void
     {
-        // Get all available states to distribute cities among them
-        $states = State::all();
-
-        if ($states->isEmpty()) {
-            throw new \Exception('No states found. Please run StateSeeder first.');
-        }
-
-        $cities = [
-            'New York',
-            'Los Angeles',
-            'Chicago',
-            'Houston',
-            'Phoenix',
-            'Philadelphia',
-            'San Antonio',
-            'San Diego',
-            'Dallas',
-            'San Jose',
-            'Austin',
-            'Jacksonville',
-            'Fort Worth',
-            'Columbus',
-            'San Francisco',
-            'Charlotte',
-            'Indianapolis',
-            'Seattle',
-            'Denver',
-            'Boston'
+        $citiesByState = [
+            'Ohio' => ['New Britneystad', 'Lindstad', 'Carmelstad', 'West Lulu', 'Loganshire'],
+            'Kansas' => ['Lake Kelsi', 'Monroeside', 'Cormierville', 'East Ladarius', 'Doylebury'],
+            'California' => ['Toyport', 'New Bennieville', 'Demarcotown', 'Dareville', 'Maximilliaberg'],
+            'Oregon' => ['Larsonview', 'Muellerville', 'East Alfonso', 'South Shanellefort', 'Port Johnson'],
+            'New York' => ['New Devenmouth', 'North Alvah', 'Kelvinmouth', 'Kemmerchester', 'Kunzeview']
         ];
 
-        foreach ($cities as $city) {
-            // Assign a random state to each city
-            $randomState = $states->random();
-
-            City::create([
-                'name' => $city,
-                'state_id' => $randomState->id
-            ]);
+        foreach ($citiesByState as $stateName => $cities) {
+            $state = State::where('name', $stateName)->first();
+            if ($state) {
+                foreach ($cities as $cityName) {
+                    DB::table('cities')->insertOrIgnore([
+                        'name' => $cityName,
+                        'state_id' => $state->id
+                    ]);
+                }
+            }
         }
     }
 }
